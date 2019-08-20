@@ -1,0 +1,16 @@
+.post {
+    border: 1px solid #eff3f6;
+    border-radius: 10px;
+    background: #fafbfc;
+    margin: 0 0 10px 0;
+    &_title {
+        font-weight: 500;
+        font-size: 20px;
+    }
+    &_body {
+        
+    }
+    &_author {
+        text-align: end;
+    }
+}

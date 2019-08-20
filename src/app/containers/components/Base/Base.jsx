@@ -3,26 +3,18 @@ import { connect } from 'react-redux';
 
 import Header from '../Header';
 import Search from '../Search';
+import Post from '../Post';
 import Pagination from '../Pagination';
+import Footer from '../Footer';
 
 import './Base.scss';
-
-const Post = ({ body, id, title, userId }) => {
-
-    return (
-        
-        <div className="col-12 content_body">
-            {body}
-        </div>
-    )
-}
 
 class Base extends Component {
 
     getPosts = (items) => {
         const postsData = items.map((item) => {
             return (
-                <Post 
+                <Post
                     body={item.body}
                     key={item.id}
                     title={item.title}
@@ -37,8 +29,6 @@ class Base extends Component {
 
         const { items } = this.props
 
-        console.log(items)
-
         return (
             <div className="base">
                 <Header />
@@ -51,6 +41,7 @@ class Base extends Component {
                 </div>
 
                  <Pagination />
+                 <Footer />
             </div>
         ) 
     }

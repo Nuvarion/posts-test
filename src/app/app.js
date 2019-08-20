@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import { Provider } from 'react-redux';
 import ClientEntry from 'app/root/ClientEntry';
 import { configureStore } from 'app_redux/createStore';
-import Base from '../app/containers/components/Base';
+import Base from 'app_components/Base';
 
 const store = configureStore();
 
