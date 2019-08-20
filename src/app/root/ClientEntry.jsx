@@ -4,7 +4,6 @@ import { renderRoutes } from 'react-router-config';
 
 import routes from 'app_routes';
 
-
 const ClientEntry = (props) => {
 	return (
 		<Router>

@@ -1,3 +1,11 @@
-import { fetchPosts } from './posts.action';
+import { 
+    fetchPosts,
+    fetchUsers,
+    fetchImages
+ } from './posts.action';
 
-export { fetchPosts };
+export { 
+    fetchPosts,
+    fetchUsers,
+    fetchImages
+ };

@@ -2,22 +2,53 @@ import * as t from './constants';
 
 const initialState = {
   items: [],
-  loading: false,
+  users: [],
+  images: [],
+  loading: false
 }
 
 const posts = (state = initialState, action) => {
   switch(action.type) {
+
     case t.FETCH_POSTS:
       return {
         ...state,
         loading: true
       }
+
+    case t.FETCH_USERS:
+      return {
+        ...state,
+        loading: true
+      }
+
+    case t.FETCH_IMAGES:
+      return {
+        ...state,
+        loading: true
+      }
+
     case t.FETCH_POSTS_SUCCESS: 
       return {
         ...state,
         loading: false,
         items: action.payload
       }
+
+    case t.FETCH_USERS_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        users: action.payload
+      }
+
+    case t.FETCH_IMAGES_SUCCESS:
+      return {
+        ...state,
+        loading: false,
+        images: action.payload
+      }
+ 
     default:
       return state;
   }

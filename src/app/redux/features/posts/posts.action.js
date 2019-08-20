@@ -4,10 +4,13 @@ import * as t from './constants'
 function fetchPosts() {
 
   return (dispatch) => {
-    
+
     dispatch({
       type: t.FETCH_POSTS
     })
+
+    dispatch(fetchUsers())
+    dispatch(fetchImages())
 
     ApiService.get('/posts')
     .then((res) => {
@@ -18,9 +21,58 @@ function fetchPosts() {
   }
 }
 
+function fetchUsers() {
+
+  return (dispatch) => {
+
+    dispatch({
+      type: t.FETCH_USERS
+    })
+
+    ApiService.get('/users')
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch(fetchUsersSuccess(res.data))
+        }
+     })
+  }
+}
+
+function fetchImages() {
+
+  return (dispatch) => {
+
+    dispatch({
+      type: t.FETCH_IMAGES
+    })
+
+    ApiService.get('/photos')
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch(fetchImagesSuccess(res.data))
+        }
+     })
+  }
+}
+
+
 function fetchPostsSuccess(data) {
   return {
     type: t.FETCH_POSTS_SUCCESS,
+    payload: data
+  }
+}
+
+function fetchUsersSuccess(data) {
+  return {
+    type: t.FETCH_USERS_SUCCESS,
+    payload: data
+  }
+}
+
+function fetchImagesSuccess(data) {
+  return {
+    type: t.FETCH_IMAGES_SUCCESS,
     payload: data
   }
 }
@@ -33,5 +85,7 @@ function fetchPostsError(err) {
 }
 
 export {
-  fetchPosts
+  fetchPosts,
+  fetchUsers,
+  fetchImages
 }

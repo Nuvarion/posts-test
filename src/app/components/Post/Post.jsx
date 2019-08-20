@@ -2,18 +2,23 @@ import React from 'react';
 
 import './Post.scss';
 
-const Post = ({ body, title, userId }) => {
+const Post = ({ body, title, author, image }) => {
 
     return (
-        <div className="post col-12">
-            <div className="post_title mt-2 mb-3">
-                {title}
-            </div>
-            <div className="post_body mb-2">
-                {body}
-            </div>
-            <div className="post_author mb-2">
-                {userId}
+        <div className="row justify-content-center mb-3">
+            <div className="post col-7">
+                <div className="post_title mt-2 mb-3">
+                    {title}
+                </div>
+                <div className="post_image">
+                    <img className="mw-100" src={`${image}`} alt=""/>
+                </div>
+                <div className="post_body mb-2">
+                    {body}
+                </div>
+                <div className="post_author mb-2">
+                    {author}
+                </div>
             </div>
         </div>
     )
