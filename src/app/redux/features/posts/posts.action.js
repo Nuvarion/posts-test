@@ -1,8 +1,23 @@
+import ApiService from 'app_services/ApiService'
 import * as t from './constants'
 
 function fetchPosts() {
-  return {
-    type: t.FETCH_POSTS,
+
+  
+
+  return (dispatch) => {
+    
+    dispatch({
+      type: t.FETCH_POSTS
+    })
+
+    ApiService.get('/posts')
+    .then((res) => {
+      // console.log(res)
+      if (res.status === 200) {
+        dispatch(fetchPostsSuccess(res.data))
+      }
+     })
   }
 }
 

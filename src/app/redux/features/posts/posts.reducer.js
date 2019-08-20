@@ -12,7 +12,12 @@ const posts = (state = initialState, action) => {
         ...state,
         loading: true
       }
-    
+    case t.FETCH_POSTS_SUCCESS: 
+      return {
+        ...state,
+        loading: false,
+        items: action.payload
+      }
     default:
       return state;
   }

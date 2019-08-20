@@ -68,9 +68,9 @@ styles:
   # print: true
 
   # Core CSS
-  # buttons: true
+  buttons: true
   # code: true
-  # forms: true
+  forms: true
   grid: true
   # images: true
   reboot: true

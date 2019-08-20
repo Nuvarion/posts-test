@@ -18,7 +18,6 @@ const aliases = {
   app_pages: 'src/app/components/pages',
   app_controls: 'src/app/components/controls',
 
-
   // сервисы и компоненты redux
   app_redux: 'src/app/redux',
   app_services: 'src/app/services',

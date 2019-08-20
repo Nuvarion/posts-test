@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { fetchPosts } from 'app_redux/features/posts';
 
 const StartPageContainer = ({ posts, fetchPosts }) => {
-  console.log(posts)
 
   useEffect(() => {
     fetchPosts();

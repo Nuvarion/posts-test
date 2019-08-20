@@ -8,11 +8,9 @@ import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import rootReducer from './rootReducer';
 
-
 const logger = createLogger({
   collapsed: (getState, action, logEntry) => !logEntry.error
 });
-
 
 function configureStore(initialState) {
   const store = createStore(
