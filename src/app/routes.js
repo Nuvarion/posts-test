@@ -1,5 +1,5 @@
 import MainContainer from "app_containers/MainContainer";
-import StartPageContainer from "app_containers/StartPageContainer";
+import Base from 'app_components/Base';
 
 const routes = [
   {
@@ -7,8 +7,8 @@ const routes = [
     routes: [
       {
         path: '/',
-        component: StartPageContainer
-      }
+        component: Base
+      },
     ]
   }
 ]

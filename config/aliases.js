@@ -1,6 +1,6 @@
 const path = require('path');
 
-const ases = {
+const aliases = {
   // модули
   node_modules: 'node_modules',
 
@@ -11,7 +11,7 @@ const ases = {
   app: 'src/app',
 
   // главные модули
-  app_components: 'src/app/containers/components',
+  app_components: 'src/app/components',
   app_routes: 'src/app/routes',
   app_containers: 'src/app/containers',
 
@@ -32,20 +32,20 @@ const ases = {
   helpers : 'src/app/helpers',
 }
 
-function returnWebpackases(als) {
-  const newases = {};
+function returnWebpackAliases(als) {
+  const newAliases = {};
 
   for(let key in als) {
     if ( als.hasOwnProperty(key) ) {
       const newValue = path.resolve(__dirname, `./../${als[key]}`);
-      newases[key] = newValue;
+      newAliases[key] = newValue;
     }
   }
 
-  return newases;
+  return newAliases;
 }
 
 module.exports = {
-  webpack: returnWebpackases(ases),
-  jestases: ases
+  webpack: returnWebpackAliases(aliases),
+  jestAliases: aliases
 }

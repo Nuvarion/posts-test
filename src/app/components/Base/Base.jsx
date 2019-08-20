@@ -1,15 +1,19 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { fetchPosts } from 'app_redux/features/posts';
 
-import Header from '../Header';
-import Search from '../Search';
-import Post from '../Post';
-import Pagination from '../Pagination';
-import Footer from '../Footer';
+import Search from 'app_components/Search';
+import Post from 'app_components/Post';
+import Pagination from 'app_components/Pagination';
+import Spinner from 'app_components/Spinner'
 
 import './Base.scss';
 
 class Base extends Component {
+
+    componentDidMount() {
+        this.props.fetchPosts();
+    }
 
     getPosts = (items) => {
         const postsData = items.map((item) => {
@@ -27,31 +31,40 @@ class Base extends Component {
 
     render() {
 
-        const { items } = this.props
+        const { posts: { items }, loading } = this.props
 
         return (
             <div className="base">
-                <Header />
                 <Search />
-
                 <div className="container content">
+
+                    <div className="main">
+                        { loading ? (
+                            <Spinner />
+                        ) : null}
+                    </div>
+
                     <div className="row">
                         {this.getPosts(items)}
                     </div>
                 </div>
-
                  <Pagination />
-                 <Footer />
             </div>
         ) 
     }
    
 }
 
-const mapStateToProps = ({ posts: { items } }) => {
+const mapStateToProps = ({ posts }) => {
     return {
-        items
+        posts
     }
 }
 
-export default connect(mapStateToProps)(Base);
+const mapDispatchToProps = (dispatch) => {
+    return { 
+      fetchPosts: () => dispatch(fetchPosts())
+    }
+  }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Base);
