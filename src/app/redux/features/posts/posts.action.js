@@ -3,8 +3,6 @@ import * as t from './constants'
 
 function fetchPosts() {
 
-  
-
   return (dispatch) => {
     
     dispatch({
@@ -13,7 +11,6 @@ function fetchPosts() {
 
     ApiService.get('/posts')
     .then((res) => {
-      // console.log(res)
       if (res.status === 200) {
         dispatch(fetchPostsSuccess(res.data))
       }

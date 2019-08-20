@@ -1,56 +1,66 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
+
+import Header from '../Header';
+import Search from '../Search';
+import Pagination from '../Pagination';
 
 import './Base.scss';
 
-const Base = () => {
-   return (
-       <React.Fragment>
+const Post = ({ body, id, title, userId }) => {
 
-            <header className="header">
-                <div className="header_item">
-                    <span>BLOG</span>
-                </div>
-            </header>
-
-            <div className="search">
-                <span className="search_text">
-                    Enter post title:
-                </span>
-                <nav className="navbar navbar-light bg-light">
-                    <form className="form-inline">
-                        <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                        <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                    </form>
-                </nav>
-            </div>
-
-            <div className="container content">
-                    <div className="row">
-                        <div className="col content_body">
-                            hello world
-                        </div>
-                        <div className="col content_body">
-                            hello world
-                        </div>
-                        <div className="col content_body">
-                            hello world
-                        </div>
-                        <div className="col content_body">
-                            hello world
-                        </div>
-                </div>
-            </div>
-            
-            <div className="pagination">
-
-            </div>
-
-       </React.Fragment>
+    return (
         
-   ) 
+        <div className="col-12 content_body">
+            {body}
+        </div>
+    )
 }
 
-const mapStateToProps = ({ items: { }})
+class Base extends Component {
 
-export default connect()(Base);
+    getPosts = (items) => {
+        const postsData = items.map((item) => {
+            return (
+                <Post 
+                    body={item.body}
+                    key={item.id}
+                    title={item.title}
+                    userId={item.userId}
+                />
+            );
+        });
+        return postsData
+    };
+
+    render() {
+
+        const { items } = this.props
+
+        console.log(items)
+
+        return (
+            <div className="base">
+                <Header />
+                <Search />
+
+                <div className="container content">
+                    <div className="row">
+                        {this.getPosts(items)}
+                    </div>
+                </div>
+
+                 <Pagination />
+            </div>
+        ) 
+    }
+   
+}
+
+const mapStateToProps = ({ posts: { items } }) => {
+    return {
+        items
+    }
+}
+
+export default connect(mapStateToProps)(Base);

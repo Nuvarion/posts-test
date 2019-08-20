@@ -1,3 +1,7 @@
+.base {
+    font-family: 'Montserrat', sans-serif;
+}
+
 .header {
     height: 50px;
     background: rgb(37,42,46);
@@ -13,15 +17,10 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 50px 0 0 0;
     font-size: 20px;
-    &_text {
-        margin: 0 15px 0 0;
-    }
 }
 
 .content {
-    margin-top: 50px;
     &_body {
         text-align: center;
     }
