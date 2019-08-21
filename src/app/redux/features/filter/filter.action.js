@@ -7,6 +7,14 @@ function changeSearch(str) {
     }
 }
 
+function changeFilter(str) {
+    return {
+        type: t.CHANGE_FILTER,
+        payload: str
+    }
+}
+
 export {
-    changeSearch
+    changeSearch,
+    changeFilter
 }

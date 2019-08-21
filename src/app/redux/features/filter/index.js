@@ -1,7 +1,9 @@
 import { 
-    changeSearch
+    changeSearch,
+    changeFilter
  } from './filter.action';
 
 export { 
-    changeSearch
+    changeSearch,
+    changeFilter
  };

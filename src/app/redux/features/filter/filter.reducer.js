@@ -1,7 +1,8 @@
 import * as t from './constants';
 
 const initialState = {
-    search: ''
+    search: '',
+    filter: ''
 }
 
 const filter = (state = initialState, action) => {
@@ -11,6 +12,12 @@ const filter = (state = initialState, action) => {
             return {
                 ...state,
                 search: action.payload
+            }
+
+        case t.CHANGE_FILTER:
+            return {
+                ...state,
+                filter: action.payload
             }
 
         default: 

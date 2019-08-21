@@ -10,8 +10,8 @@ const Post = ({ body, title, author, image }) => {
                 <div className="post_title mt-2 mb-3">
                     {title}
                 </div>
-                <div className="post_image">
-                    <img className="mw-100" src={`${image}`} alt=""/>
+                <div className="post_image mb-2">
+                    <img className="mw-100" src={`${image}`} alt="post-image"/>
                 </div>
                 <div className="post_body mb-2">
                     {body}

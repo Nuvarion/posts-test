@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { fetchPosts } from 'app_redux/features/posts';
 import Search from 'app_components/Search';
+import Filter from 'app_components/Filter';
 import Post from 'app_components/Post';
 import Pagination from 'app_components/Pagination';
 import Spinner from 'app_components/Spinner'
@@ -22,32 +23,32 @@ class Base extends Component {
             const user = users.find((el) => {
                 return item.userId == el.id
             }) || {}
-            
+
             const image = images.find((el) => {
                 return item.id == el.id
             }) || {}
+
+            // console.log(!!(user.name))
+
+            // if (!!(user)) {
+
+            //     const userFiltering = items.filter((el) => {
+            //         return el.id == items.userId
+            //     }) || {}
+
+            // }
 
             return (
                 <Post
                     body={item.body}
                     key={item.id}
                     title={item.title}
-                    author={user.name || item.userId}
+                    author={user.name}
                     image={image.url}
                 />
             );
         });
         return postsData
-    };
-
-    search(items, term) {
-        if (term.length === 0) {
-            return items;
-        }
-        return items.filter((item) => {
-            return item.label
-            .toLowerCase().indexOf(term) > -1;
-        });
     };
 
     render() {
@@ -57,12 +58,11 @@ class Base extends Component {
         return (
             <div className="base">
                 <Search />
+                <Filter />
                 <div className="container content">
 
                     <div className="main">
-                        { loading ? (
-                            <Spinner />
-                        ) : null}
+                        { loading ? <Spinner /> : null}
                     </div>
 
                     <div>
@@ -71,23 +71,32 @@ class Base extends Component {
                 </div>
                  <Pagination />
             </div>
-        ) 
+        )
     }
 }
 
-const mapStateToProps = ({ posts, filter }) => {
+const mapStateToProps = ({ posts, filter: { filter, search } }) => {
 
-    const reg = new RegExp(`${filter.search}`, 'i');
-    const { loading, items, users, images } = posts;
+    const { loading, items, users, images, items: { userId } } = posts;
+
+    const filteredUsers = users.filter((el) => {
+        return regExpSearch(filter).test(el.name)
+    })
+
     const filteredItems = items.filter((el) => {
-        return reg.test(el.title);
+        const user = filteredUsers.find((item) => {
+            return el.userId === item.id;
+        })
+
+        return regExpSearch(search).test(el.title) && user;
     })
 
     return {
         items: filteredItems,
         loading,
         users,
-        images
+        images,
+        userId
     }
 }
 
@@ -97,6 +106,13 @@ const mapDispatchToProps = (dispatch) => {
         fetchPosts,
       }, dispatch)
     }
-  }
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)(Base);
+
+function regExpSearch(value) {
+
+    let regExpSearch = new RegExp(`^${value}`, 'i');
+
+    return regExpSearch
+}
