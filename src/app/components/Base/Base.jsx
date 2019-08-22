@@ -22,21 +22,11 @@ class Base extends Component {
 
             const user = users.find((el) => {
                 return item.userId == el.id
-            }) || {}
+            }) || {};
 
             const image = images.find((el) => {
                 return item.id == el.id
-            }) || {}
-
-            // console.log(!!(user.name))
-
-            // if (!!(user)) {
-
-            //     const userFiltering = items.filter((el) => {
-            //         return el.id == items.userId
-            //     }) || {}
-
-            // }
+            }) || {};
 
             return (
                 <Post
@@ -48,12 +38,12 @@ class Base extends Component {
                 />
             );
         });
-        return postsData
+        return postsData;
     };
 
     render() {
 
-        const { loading, items, users, images } = this.props
+        const { loading, items, users, images, page } = this.props;
 
         return (
             <div className="base">
@@ -62,42 +52,46 @@ class Base extends Component {
                 <div className="container content">
 
                     <div className="main">
-                        { loading ? <Spinner /> : null}
+                        { loading ? <Spinner /> : null }
                     </div>
 
                     <div>
-                        {this.getPosts(items, users, images)}
+                        {paginationSlice(this.getPosts(items, users, images), 10, page)}
+
+                        <Pagination
+                            pageCount={Math.ceil(this.getPosts(items, users, images).length / 10)}
+                        />
                     </div>
                 </div>
-                 <Pagination />
             </div>
-        )
-    }
+        );
+    };
 }
 
 const mapStateToProps = ({ posts, filter: { filter, search } }) => {
 
-    const { loading, items, users, images, items: { userId } } = posts;
+    const { loading, items, users, images, page, items: { userId } } = posts;
 
     const filteredUsers = users.filter((el) => {
         return regExpSearch(filter).test(el.name)
-    })
+    });
 
     const filteredItems = items.filter((el) => {
         const user = filteredUsers.find((item) => {
             return el.userId === item.id;
-        })
+        });
 
         return regExpSearch(search).test(el.title) && user;
-    })
+    });
 
     return {
         items: filteredItems,
         loading,
         users,
         images,
-        userId
-    }
+        userId,
+        page
+    };
 }
 
 const mapDispatchToProps = (dispatch) => {
@@ -105,14 +99,24 @@ const mapDispatchToProps = (dispatch) => {
       actions: bindActionCreators({
         fetchPosts,
       }, dispatch)
-    }
+    };
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Base);
 
 function regExpSearch(value) {
 
-    let regExpSearch = new RegExp(`^${value}`, 'i');
+    const regExpSearch = new RegExp(`^${value}`, 'i');
 
     return regExpSearch
 }
+
+function paginationSlice(arr, perPage, page) {
+
+    const firstEl = perPage * page;
+
+    const lastEl = firstEl + perPage;
+
+    return arr.slice(firstEl, lastEl);
+};
+

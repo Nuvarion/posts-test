@@ -1,18 +1,61 @@
 import React from 'react';
+import ReactPaginate from 'react-paginate';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import { setPage } from 'app_redux/features/posts';
 
 import './Pagination.scss';
 
-const Pagination = () => {
+const Pagination = ({ pageCount, page, actions }) => {
 
-    return (
-            <div className="pagination mb-5">
-                <div>1</div>
-                <div>2</div>
-                <div>3</div>
-                <div>4</div>
-                <div>5</div>
-            </div>
-    )
+  const { setPage } = actions;
+
+  return (
+    <div className="d-flex justify-content-center">
+        <ReactPaginate 
+
+        // Данные
+        pageCount={pageCount}
+        forcePage={page}
+        initialPage={page}
+        onPageChange={({ selected }) => setPage(selected)}
+        marginPagesDisplayed={2}
+        pageRangeDisplayed={2}
+
+        // Стилизация
+        previousLabel={'previous'}
+        nextLabel={'next'}
+        breakLabel={'...'}
+        breakClassName={'break-me'}
+        containerClassName={'pagination'}
+        pageClassName={'page-item'}
+        pageLinkClassName={'page-link'}
+        previousClassName={'page-item'}
+        nextClassName={'page-item'}
+        previousLinkClassName={'page-link'}
+        nextLinkClassName={'page-link'}
+        breakClassName={'page-item'}
+        breakLinkClassName={'page-link'}
+        activeClassName={'active'}
+        />
+    </div>
+  )
 }
 
-export default Pagination
+const mapStateToProps = ({ posts: { page }} ) => {
+  return({
+    page
+  })
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+      actions: bindActionCreators({
+        setPage
+      }, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Pagination);
+

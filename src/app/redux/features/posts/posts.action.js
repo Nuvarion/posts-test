@@ -55,7 +55,6 @@ function fetchImages() {
   }
 }
 
-
 function fetchPostsSuccess(data) {
   return {
     type: t.FETCH_POSTS_SUCCESS,
@@ -77,15 +76,23 @@ function fetchImagesSuccess(data) {
   }
 }
 
-function fetchPostsError(err) {
+function setPage(selected) {
   return {
-    type: t.FETCH_POSTS_ERROR,
-    payload: err
+    type: t.SWITCH_PAGES,
+    payload: selected
   }
 }
+
+// function fetchPostsError(err) {
+//   return {
+//     type: t.FETCH_POSTS_ERROR,
+//     payload: err
+//   }
+// }
 
 export {
   fetchPosts,
   fetchUsers,
-  fetchImages
+  fetchImages,
+  setPage
 }

@@ -4,10 +4,12 @@ const initialState = {
   items: [],
   users: [],
   images: [],
+  page: 0,
   loading: false
 }
 
 const posts = (state = initialState, action) => {
+
   switch(action.type) {
 
     case t.FETCH_POSTS:
@@ -26,6 +28,12 @@ const posts = (state = initialState, action) => {
       return {
         ...state,
         loading: true
+      }
+
+    case t.SWITCH_PAGES:
+      return {
+        ...state,
+        page: action.payload
       }
 
     case t.FETCH_POSTS_SUCCESS: 
@@ -48,7 +56,7 @@ const posts = (state = initialState, action) => {
         loading: false,
         images: action.payload
       }
- 
+
     default:
       return state;
   }
