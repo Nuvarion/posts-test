@@ -3,6 +3,9 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { fetchPosts, fetchCommentPage } from 'app_redux/features/posts';
+import EditPost from 'app_components/EditPost';
+import DeletePost from 'app_components/DeletePost';
+import Spinner from 'app_components/Spinner';
 
 import './PostPage.scss';
 
@@ -17,7 +20,7 @@ class PostPage extends Component {
         const commentsData = commentsPage.map((item) => {
 
             return (
-                <div className="row justify-content-center mb-3">
+                <div key={item.id} className="row justify-content-center mb-3">
                     <div className="comment post col-7">
                         <div className="comment_body">
                             {item.body}
@@ -34,13 +37,15 @@ class PostPage extends Component {
 
     render() {
 
-        const { match: { params: { id } }, items, images, users, commentsPage } = this.props;
+        const { match: { params: { id } }, items, images, users, commentsPage, loading } = this.props;
 
-        const { body, title } = items[id - 1] || {};
+        const { body, title, userId } = items[id - 1] || {};
 
         const { url } = images[id - 1] || {};
 
-        const { name, username, email, website } = users[id - 1] || {};
+        const user = users && users.find((el) => el.id === userId) || {};
+
+        const { name, username, email, website } = user || {};
 
         return (
             <React.Fragment>
@@ -56,6 +61,10 @@ class PostPage extends Component {
                         <div className="post_body mb-2">
                             {body}
                         </div>
+            
+                        <EditPost />
+                        
+                        <DeletePost postId={id - 1}/>
                     </div>
                 </div>    
                 
@@ -79,7 +88,7 @@ class PostPage extends Component {
                     <div className="d-flex justify-content-center mb-3">
                         <span>Comments</span>
                     </div>
-                    {this.getComments(commentsPage)}
+                    {loading ? <Spinner /> : this.getComments(commentsPage)}
                 </div>
             </React.Fragment>
         );

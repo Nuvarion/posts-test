@@ -3,7 +3,8 @@ import {
     fetchUsers,
     fetchImages,
     setPage,
-    fetchCommentPage
+    fetchCommentPage,
+    fetchDelete
  } from './posts.action';
 
 export { 
@@ -11,5 +12,6 @@ export {
     fetchUsers,
     fetchImages,
     setPage,
-    fetchCommentPage
+    fetchCommentPage,
+    fetchDelete
  };

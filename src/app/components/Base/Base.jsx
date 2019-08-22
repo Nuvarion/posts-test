@@ -72,8 +72,6 @@ class Base extends Component {
 
 const mapStateToProps = ({ posts, filter: { filter, search } }) => {
 
-    console.log(posts)
-
     const { loading, items, users, images, page, items: { userId } } = posts;
 
     const filteredUsers = users.filter((el) => {

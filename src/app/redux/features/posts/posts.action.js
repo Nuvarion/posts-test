@@ -16,8 +16,24 @@ function fetchPosts() {
     .then((res) => {
       if (res.status === 200) {
         dispatch(fetchPostsSuccess(res.data))
+      } else {
+        dispatch(fetchPostsError(err))
       }
      })
+  }
+}
+
+function fetchPostsSuccess(data) {
+  return {
+    type: t.FETCH_POSTS_SUCCESS,
+    payload: data
+  }
+}
+
+function fetchPostsError(err) {
+  return {
+    type: t.FETCH_POSTS_ERROR,
+    payload: err
   }
 }
 
@@ -33,8 +49,24 @@ function fetchUsers() {
     .then((res) => {
       if (res.status === 200) {
         dispatch(fetchUsersSuccess(res.data))
+        } else {
+          dispatch(fetchUsersError(err))
         }
      })
+  }
+}
+
+function fetchUsersSuccess(data) {
+  return {
+    type: t.FETCH_USERS_SUCCESS,
+    payload: data
+  }
+}
+
+function fetchUsersError(err) {
+  return {
+    type: t.FETCH_USERS_ERROR,
+    payload: err
   }
 }
 
@@ -50,8 +82,24 @@ function fetchImages() {
     .then((res) => {
       if (res.status === 200) {
         dispatch(fetchImagesSuccess(res.data))
+        } else {
+          dispatch(fetchImagesError(err))
         }
      })
+  }
+}
+
+function fetchImagesSuccess(data) {
+  return {
+    type: t.FETCH_IMAGES_SUCCESS,
+    payload: data
+  }
+}
+
+function fetchImagesError(err) {
+  return {
+    type: t.FETCH_IMAGES_ERROR,
+    payload: err
   }
 }
 
@@ -65,29 +113,10 @@ function fetchCommentPage(postId) {
     .then((res) => {
       if (res.status === 200) {
         dispatch(fetchCommentsSuccess(res.data))
+        } else {
+          dispatch(fetchCommentsError(err))
         }
      })
-  }
-}
-
-function fetchPostsSuccess(data) {
-  return {
-    type: t.FETCH_POSTS_SUCCESS,
-    payload: data
-  }
-}
-
-function fetchUsersSuccess(data) {
-  return {
-    type: t.FETCH_USERS_SUCCESS,
-    payload: data
-  }
-}
-
-function fetchImagesSuccess(data) {
-  return {
-    type: t.FETCH_IMAGES_SUCCESS,
-    payload: data
   }
 }
 
@@ -98,6 +127,46 @@ function fetchCommentsSuccess(data) {
   }
 }
 
+function fetchCommentsError(err) {
+  return {
+    type: t.FETCH_COMMENTS_ERROR,
+    payload: err
+  }
+}
+
+function fetchDelete(postId) {
+
+  return (dispatch) => {
+
+    dispatch({
+      type: t.FETCH_POSTS_DELETE
+    })
+
+    ApiService.delete(`/posts/${postId + 1}`)
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch(fetchDeleteSuccess())
+        } else {
+          dispatch(fetchDeleteError())
+        }
+     })
+  }
+}
+
+function fetchDeleteSuccess() {
+  return {
+    type: t.FETCH_POSTS_DELETE_SUCCESS,
+    payload: {}
+  }
+}
+
+function fetchDeleteError(err) {
+  return {
+    type: t.FETCH_POSTS_DELETE_ERROR,
+    payload: err
+  }
+}
+
 function setPage(selected) {
   return {
     type: t.SWITCH_PAGES,
@@ -105,17 +174,11 @@ function setPage(selected) {
   }
 }
 
-// function fetchPostsError(err) {
-//   return {
-//     type: t.FETCH_POSTS_ERROR,
-//     payload: err
-//   }
-// }
-
 export {
   fetchPosts,
   fetchUsers,
   fetchImages,
   setPage,
-  fetchCommentPage
+  fetchCommentPage,
+  fetchDelete
 }
