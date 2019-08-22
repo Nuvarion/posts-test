@@ -2,12 +2,14 @@ import {
     fetchPosts,
     fetchUsers,
     fetchImages,
-    setPage
+    setPage,
+    fetchCommentPage
  } from './posts.action';
 
 export { 
     fetchPosts,
     fetchUsers,
     fetchImages,
-    setPage
+    setPage,
+    fetchCommentPage
  };

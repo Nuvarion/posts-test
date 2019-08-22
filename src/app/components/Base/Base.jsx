@@ -15,7 +15,7 @@ class Base extends Component {
 
     componentDidMount() {
         this.props.actions.fetchPosts();
-    }
+    };
 
     getPosts = (items, users, images) => {
         const postsData = items.map((item) => {
@@ -35,6 +35,7 @@ class Base extends Component {
                     title={item.title}
                     author={user.name}
                     image={image.url}
+                    id={item.id}
                 />
             );
         });
@@ -56,6 +57,7 @@ class Base extends Component {
                     </div>
 
                     <div>
+
                         {paginationSlice(this.getPosts(items, users, images), 10, page)}
 
                         <Pagination
@@ -69,6 +71,8 @@ class Base extends Component {
 }
 
 const mapStateToProps = ({ posts, filter: { filter, search } }) => {
+
+    console.log(posts)
 
     const { loading, items, users, images, page, items: { userId } } = posts;
 
@@ -97,7 +101,7 @@ const mapStateToProps = ({ posts, filter: { filter, search } }) => {
 const mapDispatchToProps = (dispatch) => {
     return { 
       actions: bindActionCreators({
-        fetchPosts,
+        fetchPosts
       }, dispatch)
     };
 }

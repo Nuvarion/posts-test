@@ -1,18 +1,18 @@
 import MainContainer from "app_containers/MainContainer";
 import Base from 'app_components/Base';
-import Post from 'app_components/Post';
+import PostPage from './pages/PostPage';
 
 const routes = [
   {
     component: MainContainer,
     routes: [
       {
-        path: '/',
+        path: '/posts',
         component: Base
       },
       {
         path: '/post/:id',
-        component: Post
+        component: PostPage
       }
     ]
   }

@@ -16,7 +16,7 @@ const Search = ({ actions, search }) => {
             <span className="search_text pr-2">
                 Enter post title:
             </span>
-            <nav className="navbar navbar-light bg-light">
+            <nav className="navbar navbar-white bg-white">
                 <form className="form-inline">
                     <input 
                         name="search"
@@ -27,7 +27,7 @@ const Search = ({ actions, search }) => {
                         value={search}
                         onChange={changeHandler}
                     />
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                    <button className="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </nav>
         </div>

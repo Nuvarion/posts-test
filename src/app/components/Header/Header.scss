@@ -1,0 +1,14 @@
+.header {
+    height: 50px;
+    background: rgb(37,42,46);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &_item {
+        color: white;
+        &:hover {
+            text-decoration: none;
+            color: #566061;
+        }
+    }
+}

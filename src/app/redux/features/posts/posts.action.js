@@ -55,6 +55,21 @@ function fetchImages() {
   }
 }
 
+function fetchCommentPage(postId) {
+  return (dispatch) => {
+    dispatch({
+      type: t.FETCH_COMMENTS
+    })
+
+    ApiService.get(`/comments?postId=${postId}`)
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch(fetchCommentsSuccess(res.data))
+        }
+     })
+  }
+}
+
 function fetchPostsSuccess(data) {
   return {
     type: t.FETCH_POSTS_SUCCESS,
@@ -72,6 +87,13 @@ function fetchUsersSuccess(data) {
 function fetchImagesSuccess(data) {
   return {
     type: t.FETCH_IMAGES_SUCCESS,
+    payload: data
+  }
+}
+
+function fetchCommentsSuccess(data) {
+  return {
+    type: t.FETCH_COMMENTS_SUCCESS,
     payload: data
   }
 }
@@ -94,5 +116,6 @@ export {
   fetchPosts,
   fetchUsers,
   fetchImages,
-  setPage
+  setPage,
+  fetchCommentPage
 }

@@ -17,7 +17,7 @@ const Filter = ({ actions, filter }) => {
             <span className="search_text pr-2">
                 Enter author name:
             </span>
-            <nav className="navbar navbar-light bg-light">
+            <nav className="navbar navbar-white bg-white">
                 <form className="form-inline">
                     <input 
                         name="filter"
@@ -28,7 +28,7 @@ const Filter = ({ actions, filter }) => {
                         value={filter}
                         onChange={changeHandler}
                     />
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Filter</button>
+                    <button className="btn btn-outline-secondary my-2 my-sm-0" type="submit">Filter</button>
                 </form>
             </nav>
         </div>
