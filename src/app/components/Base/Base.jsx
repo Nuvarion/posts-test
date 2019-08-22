@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 import { fetchPosts } from 'app_redux/features/posts';
 import Search from 'app_components/Search';
@@ -50,20 +51,28 @@ class Base extends Component {
             <div className="base">
                 <Search />
                 <Filter />
+                <Link to='/add/post' className="container-btn container d-flex justify-content-center mb-5">
+                    <button 
+                        className="btn btn-success">
+                            Add Post
+                    </button>
+                </Link>
+                
                 <div className="container content">
 
                     <div className="main">
                         { loading ? <Spinner /> : null }
                     </div>
 
-                    <div>
+                <div>
 
-                        {paginationSlice(this.getPosts(items, users, images), 10, page)}
+                    {paginationSlice(this.getPosts(items, users, images), 10, page)}
 
-                        <Pagination
-                            pageCount={Math.ceil(this.getPosts(items, users, images).length / 10)}
-                        />
-                    </div>
+                    <Pagination
+                        pageCount={Math.ceil(this.getPosts(items, users, images).length / 10)}
+                    />
+                </div>
+                    
                 </div>
             </div>
         );

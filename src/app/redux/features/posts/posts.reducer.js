@@ -7,10 +7,7 @@ const initialState = {
   commentsPage: [],
   page: 0,
   loading: false,
-  error: false,
-  // postLoading: {
-    
-  // }
+  error: false
 }
 
 const posts = (state = initialState, action) => {

@@ -142,7 +142,7 @@ function fetchDelete(postId) {
       type: t.FETCH_POSTS_DELETE
     })
 
-    ApiService.delete(`/posts/${postId + 1}`)
+    ApiService.delete(`/posts/${postId}`)
     .then((res) => {
       if (res.status === 200) {
         dispatch(fetchDeleteSuccess())

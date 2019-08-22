@@ -3,9 +3,10 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { fetchPosts, fetchCommentPage } from 'app_redux/features/posts';
-import EditPost from 'app_components/EditPost';
 import DeletePost from 'app_components/DeletePost';
 import Spinner from 'app_components/Spinner';
+import InputEditPost from 'app_components/InputEditPost'
+
 
 import './PostPage.scss';
 
@@ -39,11 +40,15 @@ class PostPage extends Component {
 
         const { match: { params: { id } }, items, images, users, commentsPage, loading } = this.props;
 
-        const { body, title, userId } = items[id - 1] || {};
+        const item = items.find(el => el.id == id) || {};
 
-        const { url } = images[id - 1] || {};
+        const { body, title, userId } = item || {};
+        
+        const image = images.find(el => el.id == id) || {};
 
-        const user = users && users.find((el) => el.id === userId) || {};
+        const { url } = image || {};
+
+        const user = users && users.find(el => el.id === userId) || {};
 
         const { name, username, email, website } = user || {};
 
@@ -62,9 +67,13 @@ class PostPage extends Component {
                             {body}
                         </div>
             
-                        <EditPost />
+                        <InputEditPost id={id}/>
+
+                        <button className="btn btn-warning mb-2">
+                            Edit
+                        </button>
                         
-                        <DeletePost postId={id - 1}/>
+                        <DeletePost postId={id}/>
                     </div>
                 </div>    
                 
