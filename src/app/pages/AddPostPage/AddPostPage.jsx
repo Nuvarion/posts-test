@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
 
 import { fetchAddPost } from 'app_redux/features/form';
-import InputEditPost from 'app_components/InputEditPost';
+import InputsEditPost from 'app_components/InputsEditPost';
 
 import './AddPostPage.scss';
 
@@ -19,25 +19,29 @@ const AddPostPage = ({ title, body, actions }) => {
     return (
 
         <div className="container">
-            <div className="mb-3">Enter data</div>
+            <div className="container-title mb-3">Enter data</div>
 
-            <InputEditPost />
+            <InputsEditPost id={Math.ceil(Math.random()*10+100)}/>
             
-            <Link to='/posts' className="container-btn d-flex justify-content-end mb-3">
-                <button 
-                    className="btn btn-success"
-                    onClick={onAddPost}
-                    >
-                    Create post
-                </button>
-            </Link>
+
+            <div className="btn d-flex justify-content-end mb-3">
+                <Link to='/posts'>
+                    <button 
+                        className="btn btn-success"
+                        onClick={onAddPost}
+                        >
+                        <span className="btn-text">Create post</span>
+                    </button>
+                </Link>
+            </div>
+            
         </div>
     );
 };
 
 const mapStateToProps = ({ form }) => {
 
-    const { title, body } = form;
+    const { inputs: { title, body } } = form;
 
     return {
         title,

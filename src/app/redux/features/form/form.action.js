@@ -1,17 +1,12 @@
 import ApiService from 'app_services/ApiService';
 import * as t from './constants';
 
-function changeTitle(inp, id) {
-    return {
-        type: t.CHANGE_TITLE,
-        payload: { id, inp } // { name: 'title', value: 'dfaa' }
-    };
-};
+function changeInputs(inp, id) {
 
-function changeBody(str) {
+  console.log(inp)
     return {
-        type: t.CHANGE_BODY,
-        payload: str
+        type: t.CHANGE_INPUTS,
+        payload: { id, inp }
     };
 };
 
@@ -25,7 +20,7 @@ function fetchAddPost(title, body, userId) {
             title: title,
             body: body,
             userId: userId
-      }).then((res) => { console.log(res)
+      }).then((res) => {
         if (res.status === 201) {
           dispatch(fetchAddPostSuccess(res.data))
           } else {
@@ -50,7 +45,6 @@ function fetchAddPostError(err) {
 }
 
 export {
-    changeTitle,
-    changeBody,
+    changeInputs,
     fetchAddPost
 };

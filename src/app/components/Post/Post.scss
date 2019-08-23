@@ -13,10 +13,12 @@
             color: #566061;
         }
     }
-    &_body {
-        
+    &_image {
+        border-radius: px;
     }
     &_author {
         text-align: end;
+        font-weight: 300;
+        font-size: 14px;
     }
 }

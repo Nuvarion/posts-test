@@ -1,12 +1,10 @@
 import {
-    changeTitle,
-    changeBody,
+    changeInputs,
     fetchAddPost
 }
 from './form.action';
 
 export {
-    changeTitle,
-    changeBody,
+    changeInputs,
     fetchAddPost
 };

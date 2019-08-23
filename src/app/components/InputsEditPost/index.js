@@ -1,3 +1,3 @@
-import InputEditPost from './InputEditPost';
+import InputsEditPost from './InputsEditPost';
 
-export default InputEditPost;
+export default InputsEditPost;

@@ -7,7 +7,7 @@ const Header = () => {
     return (
         <header className="header mb-5">
             <Link to='/posts' className="header_item">
-                <span>BLOG</span>
+                <span>HOME</span>
             </Link>
         </header>
     )

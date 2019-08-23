@@ -1,10 +1,27 @@
-.comment {
+.post {
+    &_title {
+        font-size: 24px;
+    }
+}
+.post-author {
+    font-size: 18px;
+    font-weight: 300;
+}
+
+.comments {
+
+    &_title {
+        font-size: 20px;
+        font-weight: 500;
+    }
 
     &_body {
-        
+        font-size: 16px;
     }
 
     &_author {
-        
+        font-size: 14px;
+        text-align: end;
+        font-weight: 300;
     }
 }

@@ -2,14 +2,15 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { changeTitle, changeBody } from 'app_redux/features/form';
+import { changeInputs } from 'app_redux/features/form';
 
-import './InputEditPost.scss';
+import './InputsEditPost.scss';
 
 const InputEditPost = ({ actions, id, inputs }) => {
+    
     const changeHandler = (e) => {
         const { name, value } = e.target;
-        actions.changeTitle({ name, value }, id)
+        actions.changeInputs({ name, value }, id)
     }
 
     const { title, body } = inputs[id] || {};
@@ -58,8 +59,7 @@ const mapStateToProps = ({ form }) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         actions: bindActionCreators({
-            changeTitle,
-            changeBody
+            changeInputs
         }, dispatch)
     };
 };

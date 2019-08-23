@@ -10,29 +10,31 @@ const initialState = {
 };
 
 const form = (state = initialState, action) => {
+
     switch (action.type) {
-        case t.CHANGE_TITLE:
+        case t.CHANGE_INPUTS:
             const inputs = { ...state.inputs }; 
             const { id, inp } = action.payload;
             const { name, value } = inp;
             const newPost = inputs[id] || {}; 
             newPost[name] = value; 
             inputs[id] = newPost;
-
+            console.log(action.payload)
             return {
                 ...state,
                 title: action.payload,
                 inputs
             }
         
-        case t.CHANGE_BODY:
-            return {
-                ...state,
-                body: action.payload
-            }
+        // case t.CHANGE_BODY:
+        //     return {
+        //         ...state,
+        //         body: action.payload
+        //     }
 
         case t.FETCH_ADD_POSTS:
             return {
+            
                 ...state,
                 loading: true
             }

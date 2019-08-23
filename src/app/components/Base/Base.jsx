@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useEffect } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
@@ -12,13 +12,13 @@ import Spinner from 'app_components/Spinner'
 
 import './Base.scss';
 
-class Base extends Component {
+const Base = ({ actions, loading, items, users, images, page }) => {
 
-    componentDidMount() {
-        this.props.actions.fetchPosts();
-    };
+    useEffect(() => {
+        actions.fetchPosts();
+    }, []);
 
-    getPosts = (items, users, images) => {
+    const getPosts = (items, users, images) => {
         const postsData = items.map((item) => {
 
             const user = users.find((el) => {
@@ -43,41 +43,38 @@ class Base extends Component {
         return postsData;
     };
 
-    render() {
+    return (
+        <div className="base">
+            <Search />
+            <Filter />
+            <Link to='/add/post' className="container-btn container d-flex justify-content-center mb-5">
 
-        const { loading, items, users, images, page } = this.props;
+                <button 
+                    className="btn btn-lg btn-success">
+                        Add Post
+                </button>
 
-        return (
-            <div className="base">
-                <Search />
-                <Filter />
-                <Link to='/add/post' className="container-btn container d-flex justify-content-center mb-5">
-                    <button 
-                        className="btn btn-success">
-                            Add Post
-                    </button>
-                </Link>
-                
-                <div className="container content">
+            </Link>
+            
+            <div className="container content">
 
-                    <div className="main">
-                        { loading ? <Spinner /> : null }
-                    </div>
+                <div className="main">
+                    { loading ? <Spinner /> : null }
+                </div>
 
                 <div>
 
-                    {paginationSlice(this.getPosts(items, users, images), 10, page)}
+                    {paginationSlice(getPosts(items, users, images), 10, page)}
 
                     <Pagination
-                        pageCount={Math.ceil(this.getPosts(items, users, images).length / 10)}
+                        pageCount={Math.ceil(getPosts(items, users, images).length / 10)}
                     />
-                </div>
-                    
+
                 </div>
             </div>
-        );
-    };
-}
+        </div>
+    );
+};
 
 const mapStateToProps = ({ posts, filter: { filter, search } }) => {
 
@@ -103,7 +100,7 @@ const mapStateToProps = ({ posts, filter: { filter, search } }) => {
         userId,
         page
     };
-}
+};
 
 const mapDispatchToProps = (dispatch) => {
     return { 
@@ -111,7 +108,7 @@ const mapDispatchToProps = (dispatch) => {
         fetchPosts
       }, dispatch)
     };
-}
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Base);
 
@@ -120,7 +117,7 @@ function regExpSearch(value) {
     const regExpSearch = new RegExp(`^${value}`, 'i');
 
     return regExpSearch
-}
+};
 
 function paginationSlice(arr, perPage, page) {
 
