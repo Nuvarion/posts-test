@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { fetchPosts, fetchCommentPage } from 'app_redux/features/posts';
+import { switchEditShow } from 'app_redux/features/form';
 import DeletePost from 'app_components/DeletePost';
 import Spinner from 'app_components/Spinner';
 import InputsEditPost from 'app_components/InputsEditPost'
@@ -35,9 +36,9 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
         return commentsData;
     }
 
-    // const onEditPost = () => {
-    //     actions.fetchEditPost(title, body)
-    // }
+    const onShowEditInputs = () => {
+        actions.switchEditShow();
+    }
 
     const item = items.find(el => el.id == id) || {};
 
@@ -51,16 +52,9 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
 
     const { name, username, email, website } = user || {};
 
-    // const { inputs } = form || {};
+    const { showEditInputs } = form;
 
-    // console.log(inputs)
-
-    // const formTitle = inputs[id].title || {};
-
-    // const formBody = inputs[id].body || {};
-
-    // console.log(formTitle, formBody)
-
+    
 
     return (
         <>
@@ -75,22 +69,32 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
                     <div className="post_body mb-3">
                         {body}
                     </div>
-        
-                    <InputsEditPost 
-                        id={id}
-                        // title={title}
-                        // body={body}
-                        />
+
+                    <div className={showEditInputs ? "d-none" : null}>
+                        <InputsEditPost 
+                            id={id}
+                            // title={title}
+                            // body={body}
+                            />
+                    </div>
 
                     <div className="d-flex align-items-center justify-content-end">
                         <DeletePost postId={id} />
 
                         <button 
-                            className="btn-edit btn btn-warning mb-2"
-                            // onClick={onEditPost}
+                            className={showEditInputs ? "btn-edit btn btn-warning mb-2" : 'd-none'}
+                            onClick={onShowEditInputs}
                             >
                             Edit
                         </button>
+                        
+                        <button 
+                            className={!showEditInputs ? "btn-edit btn btn-success mb-2" : 'd-none'}
+                            onClick={onShowEditInputs}
+                            >
+                            Submit
+                        </button>
+
                     </div>
 
                 </div>
@@ -141,7 +145,8 @@ const mapDispatchToProps = (dispatch) => {
     return { 
       actions: bindActionCreators({
         fetchPosts,
-        fetchCommentPage
+        fetchCommentPage,
+        switchEditShow
       }, dispatch)
     };
 };

@@ -43,7 +43,14 @@ function fetchAddPostError(err) {
   }
 }
 
+function switchEditShow() {
+  return {
+    type: t.SWITCH_EDIT_SHOW
+  }
+}
+
 export {
     changeInputs,
-    fetchAddPost
+    fetchAddPost,
+    switchEditShow
 };

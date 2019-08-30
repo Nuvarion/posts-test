@@ -4,7 +4,8 @@ const initialState = {
     inputs: {},
     loading: false,
     err: false,
-    addPost: {}
+    addPost: {},
+    showEditInputs: false
 };
 
 const form = (state = initialState, action) => {
@@ -42,6 +43,15 @@ const form = (state = initialState, action) => {
                 ...state,
                 loading: false,
                 err: true
+            }
+        
+        case t.SWITCH_EDIT_SHOW:
+
+            const switchEditShow = !state.showEditInputs
+
+            return {
+                ...state,
+                showEditInputs: switchEditShow
             }
 
         default: 
