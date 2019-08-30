@@ -71,8 +71,6 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
                         </button>
                     </div>
 
-                    
-                
                 </div>
             </div>    
             
