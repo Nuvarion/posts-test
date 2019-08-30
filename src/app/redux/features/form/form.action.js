@@ -3,7 +3,7 @@ import * as t from './constants';
 
 function changeInputs(inp, id) {
 
-  console.log(inp)
+  // console.log(inp)
     return {
         type: t.CHANGE_INPUTS,
         payload: { id, inp }

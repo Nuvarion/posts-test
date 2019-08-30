@@ -9,6 +9,8 @@ import Filter from 'app_components/Filter';
 import Post from 'app_components/Post';
 import Pagination from 'app_components/Pagination';
 import Spinner from 'app_components/Spinner'
+import paginationSlice from './paginationSlice';
+import regExpSearch from './regExpSearch';
 
 import './Base.scss';
 
@@ -47,13 +49,12 @@ const Base = ({ actions, loading, items, users, images, page }) => {
         <div className="base">
             <Search />
             <Filter />
-            <Link to='/add/post' className="container-btn container d-flex justify-content-center mb-5">
 
+            <Link to='/add/post' className="container-btn container d-flex justify-content-center mb-5">
                 <button 
                     className="btn btn-lg btn-success">
                         Add Post
                 </button>
-
             </Link>
             
             <div className="container content">
@@ -69,7 +70,6 @@ const Base = ({ actions, loading, items, users, images, page }) => {
                     <Pagination
                         pageCount={Math.ceil(getPosts(items, users, images).length / 10)}
                     />
-
                 </div>
             </div>
         </div>
@@ -111,20 +111,3 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Base);
-
-function regExpSearch(value) {
-
-    const regExpSearch = new RegExp(`^${value}`, 'i');
-
-    return regExpSearch
-};
-
-function paginationSlice(arr, perPage, page) {
-
-    const firstEl = perPage * page;
-
-    const lastEl = firstEl + perPage;
-
-    return arr.slice(firstEl, lastEl);
-};
-

@@ -48,7 +48,7 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
     const { name, username, email, website } = user || {};
 
     return (
-        <React.Fragment>
+        <>
             <div className="row justify-content-center mb-3">
                 <div className="post col-7">
                     <div className="post_title mt-2 mb-3">
@@ -97,7 +97,7 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
                 </div>
                 {loading ? <Spinner /> : getComments(commentsPage)}
             </div>
-        </React.Fragment>
+        </>
     );
 };
 

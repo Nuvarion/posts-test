@@ -16,7 +16,7 @@ const InputEditPost = ({ actions, id, inputs }) => {
     const { title, body } = inputs[id] || {};
 
     return (
-        <React.Fragment>
+        <>
             <div className="input-group mb-3">
                 <input 
                     type="text" 
@@ -40,7 +40,7 @@ const InputEditPost = ({ actions, id, inputs }) => {
                     onChange={changeHandler}
                     ></textarea>
             </div>
-        </React.Fragment>
+        </>
         
     );
 }

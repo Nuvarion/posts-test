@@ -1,8 +1,6 @@
 import * as t from './constants';
 
 const initialState = {
-    title: '',
-    body: '',
     inputs: {},
     loading: false,
     err: false,
