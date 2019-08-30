@@ -49,7 +49,7 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
 
     return (
         <>
-            <div className="row justify-content-center mb-3">
+            <div className="row d-flex justify-content-center mb-3">
                 <div className="post col-7">
                     <div className="post_title mt-2 mb-3">
                         {title}
@@ -61,13 +61,18 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
                         {body}
                     </div>
         
-                    <InputsEditPost id={id}/>
+                    <InputsEditPost id={id} />
 
-                    <button className="btn btn-warning mb-2">
-                        Edit
-                    </button>
+                    <div className="d-flex align-items-center justify-content-end">
+                        <DeletePost postId={id} />
+
+                        <button className="btn-edit btn btn-warning mb-2">
+                            Edit
+                        </button>
+                    </div>
+
                     
-                    <DeletePost postId={id}/>
+                
                 </div>
             </div>    
             
