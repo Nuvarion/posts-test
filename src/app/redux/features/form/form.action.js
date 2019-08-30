@@ -9,7 +9,7 @@ function changeInputs(inp, id) {
     };
 };
 
-function fetchAddPost(title, body, userId) {
+function fetchAddPost(userId, title, body) {
     return (dispatch) => {
       dispatch({
         type: t.FETCH_ADD_POSTS

@@ -26,7 +26,11 @@ const AddPostPage = ({ actions, addPostId, title, body }) => {
         <div className="container">
             <div className="container-title mb-3">Enter data</div>
 
-            <InputsEditPost id={addPostId}/>
+            <InputsEditPost 
+                id={addPostId}
+                title={title || ''}
+                body={body || ''}
+                />
 
             <div className="btn d-flex justify-content-end mb-3">
                 <Link to='/posts'>

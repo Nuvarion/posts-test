@@ -9,7 +9,7 @@ import InputsEditPost from 'app_components/InputsEditPost'
 
 import './PostPage.scss';
 
-const PostPage = ({ actions, match: { params: { id } }, items, images, users, commentsPage, loading }) => {
+const PostPage = ({ actions, match: { params: { id } }, items, images, users, commentsPage, loading, form }) => {
 
     useEffect(() => {
         actions.fetchPosts();
@@ -35,6 +35,10 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
         return commentsData;
     }
 
+    // const onEditPost = () => {
+    //     actions.fetchEditPost(title, body)
+    // }
+
     const item = items.find(el => el.id == id) || {};
 
     const { body, title, userId } = item || {};
@@ -46,6 +50,17 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
     const user = users && users.find(el => el.id === userId) || {};
 
     const { name, username, email, website } = user || {};
+
+    // const { inputs } = form || {};
+
+    // console.log(inputs)
+
+    // const formTitle = inputs[id].title || {};
+
+    // const formBody = inputs[id].body || {};
+
+    // console.log(formTitle, formBody)
+
 
     return (
         <>
@@ -61,12 +76,19 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
                         {body}
                     </div>
         
-                    <InputsEditPost id={id} />
+                    <InputsEditPost 
+                        id={id}
+                        // title={title}
+                        // body={body}
+                        />
 
                     <div className="d-flex align-items-center justify-content-end">
                         <DeletePost postId={id} />
 
-                        <button className="btn-edit btn btn-warning mb-2">
+                        <button 
+                            className="btn-edit btn btn-warning mb-2"
+                            // onClick={onEditPost}
+                            >
                             Edit
                         </button>
                     </div>
@@ -104,8 +126,10 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
     );
 };
 
-const mapStateToProps = ({ posts: { items, images, users, commentsPage } }) => {
+const mapStateToProps = ({ form, posts: { items, images, users, commentsPage } }) => {
+
     return {
+        form,
         items,
         images,
         users,

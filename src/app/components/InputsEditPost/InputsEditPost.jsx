@@ -6,15 +6,12 @@ import { changeInputs } from 'app_redux/features/form';
 
 import './InputsEditPost.scss';
 
-const InputEditPost = ({ actions, id, inputs }) => {
+const InputEditPost = ({ actions, id, title, body }) => {
     
     const changeHandler = (e) => {
         const { name, value } = e.target;
         actions.changeInputs({ name, value }, id)
     }
-
-    const { title, body } = inputs[id] || {};
-
     return (
         <>
             <div className="input-group mb-3">
@@ -25,7 +22,7 @@ const InputEditPost = ({ actions, id, inputs }) => {
                     aria-label="Username" 
                     aria-describedby="basic-addon1"
                     name="title"
-                    value={title || ''}
+                    value={title}
                     onChange={changeHandler}
                     />
             </div>
@@ -36,7 +33,7 @@ const InputEditPost = ({ actions, id, inputs }) => {
                     id="exampleFormControlTextarea1" 
                     rows="3"
                     name="body"
-                    value={body || ''}
+                    value={body}
                     onChange={changeHandler}
                     ></textarea>
             </div>
@@ -45,14 +42,9 @@ const InputEditPost = ({ actions, id, inputs }) => {
     );
 }
 
-const mapStateToProps = ({ form }) => {
-
-    const { title, body, inputs } = form;
-
+const mapStateToProps = ({  }) => {
     return {
-        title,
-        body,
-        inputs
+
     };
 };
 
