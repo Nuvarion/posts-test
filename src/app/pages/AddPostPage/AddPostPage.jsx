@@ -9,7 +9,7 @@ import InputsEditPost from 'app_components/InputsEditPost';
 
 import './AddPostPage.scss';
 
-const AddPostPage = ({ title, body, actions, items }) => {
+const AddPostPage = ({ actions, addPostId, title, body }) => {
 
     useEffect(() => {
         actions.fetchPosts()
@@ -17,7 +17,8 @@ const AddPostPage = ({ title, body, actions, items }) => {
     
     const onAddPost = () => {
         const userId = 11;
-        actions.fetchAddPost(title, body, userId);
+        console.log(title,body)
+        actions.fetchAddPost(userId, title, body);
     };
 
     return (
@@ -25,7 +26,7 @@ const AddPostPage = ({ title, body, actions, items }) => {
         <div className="container">
             <div className="container-title mb-3">Enter data</div>
 
-            <InputsEditPost id={items.length + 1}/>
+            <InputsEditPost id={addPostId}/>
 
             <div className="btn d-flex justify-content-end mb-3">
                 <Link to='/posts'>
@@ -43,13 +44,20 @@ const AddPostPage = ({ title, body, actions, items }) => {
 
 const mapStateToProps = ({ form, posts }) => {
 
-    const { inputs: { title, body } } = form;
-
     const { items } = posts;
 
+    const addPostId = items.length + 1;
+
+    const { inputs } = form || {};
+
+    const input = inputs[addPostId] || {}; 
+
+    const { title, body } = input || {};
+    
     return {
         title,
-        body, 
+        body,
+        addPostId,
         items
     };
 };

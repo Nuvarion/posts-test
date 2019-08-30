@@ -3,7 +3,6 @@ import * as t from './constants';
 
 function changeInputs(inp, id) {
 
-  // console.log(inp)
     return {
         type: t.CHANGE_INPUTS,
         payload: { id, inp }
@@ -15,7 +14,7 @@ function fetchAddPost(title, body, userId) {
       dispatch({
         type: t.FETCH_ADD_POSTS
       })
-  
+
       ApiService.post(`/posts`, {
             title: title,
             body: body,

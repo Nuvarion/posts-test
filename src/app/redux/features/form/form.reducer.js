@@ -17,22 +17,15 @@ const form = (state = initialState, action) => {
             const newPost = inputs[id] || {}; 
             newPost[name] = value; 
             inputs[id] = newPost;
-            console.log(action.payload)
+            // console.log(action.payload)
             return {
                 ...state,
-                title: action.payload,
                 inputs
             }
-        
-        // case t.CHANGE_BODY:
-        //     return {
-        //         ...state,
-        //         body: action.payload
-        //     }
 
         case t.FETCH_ADD_POSTS:
             return {
-            
+
                 ...state,
                 loading: true
             }
