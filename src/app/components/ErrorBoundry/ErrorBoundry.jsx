@@ -40,7 +40,7 @@ const mapStateToProps = ({ posts, form }) => {
     return {
         error,
         err
-    }
-}
+    };
+};
 
 export default connect(mapStateToProps)(ErrorBoundry);

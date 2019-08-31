@@ -46,12 +46,18 @@ const Base = ({ actions, loading, items, users, images, page }) => {
     return (
         <div className="base">
 
+            
+
             <Link to='/add/post' className="container-btn container d-flex justify-content-center mb-5">
                 <button 
                     className="btn btn-lg btn-success">
                         Add Post
                 </button>
             </Link>
+            
+            <Pagination
+                        pageCount={Math.ceil(getPosts(items, users, images).length / 10)}
+                    />
             
             <div className="container content">
 
