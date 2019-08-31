@@ -13,22 +13,18 @@ const Filter = ({ actions, filter }) => {
     }
 
     return(
-        <div className="search mb-5">
-            <span className="search_text pr-2">
-                Enter author name:
-            </span>
+        <div className="search">
             <nav className="navbar navbar-white bg-white">
                 <form className="form-inline">
                     <input 
                         name="filter"
                         className="form-control mr-sm-2" 
                         type="search" 
-                        placeholder="name" 
+                        placeholder="Enter author name" 
                         aria-label="Filter" 
                         value={filter}
                         onChange={changeHandler}
                     />
-                    <button className="btn btn-outline-secondary my-2 my-sm-0" type="submit">Filter</button>
                 </form>
             </nav>
         </div>

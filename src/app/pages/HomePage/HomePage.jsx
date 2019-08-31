@@ -9,8 +9,11 @@ import './HomePage.scss';
 const HomePage = () => {
     return (
         <>
-            <Search />
-            <Filter />
+            <div className="d-flex justify-content-center mb-5">
+                <Search />
+                <Filter />
+            </div>
+            
             <Base />
         </>
     );

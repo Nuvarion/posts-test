@@ -12,22 +12,18 @@ const Search = ({ actions, search }) => {
     }
 
     return (
-        <div className="search mb-5">
-            <span className="search_text pr-2">
-                Enter post title:
-            </span>
+        <div className="search">
             <nav className="navbar navbar-white bg-white">
                 <form className="form-inline">
                     <input 
                         name="search"
                         className="form-control mr-sm-2" 
                         type="search" 
-                        placeholder="title" 
+                        placeholder="Enter title post" 
                         aria-label="Search" 
                         value={search}
                         onChange={changeHandler}
                     />
-                    <button className="btn btn-outline-secondary my-2 my-sm-0" type="submit">Search</button>
                 </form>
             </nav>
         </div>
