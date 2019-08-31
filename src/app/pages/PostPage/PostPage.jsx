@@ -22,7 +22,7 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
 
             return (
                 <div key={item.id} className="row justify-content-center">
-                    <div className="comments post col-7">
+                    <div className="comments post col-10 col-md-9 col-lg-7">
                         <div className="comments_body pt-2 pb-2">
                             {item.body}
                         </div>
@@ -70,7 +70,7 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
     return (
         <>
             <div className="row d-flex justify-content-center mb-3">
-                <div className="post col-7">
+                <div className="post col-10 col-md-9 col-lg-7">
                     <div className="post_title mt-2 mb-3">
                         {title}
                     </div>
@@ -113,7 +113,7 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
             </div>    
             
             <div className="author-post row justify-content-center mb-3">
-                <div className="post post-author col-7">
+                <div className="post post-author col-10 col-md-9 col-lg-7">
                     <div className="mt-2 mb-3">
                         <span className="mr-3 post-author_name">Author:  </span>
                         <span>{name}</span>

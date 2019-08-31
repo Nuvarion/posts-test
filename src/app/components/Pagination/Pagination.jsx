@@ -15,29 +15,29 @@ const Pagination = ({ pageCount, page, actions }) => {
     <div className="d-flex justify-content-center">
         <ReactPaginate 
 
-        // Данные
-        pageCount={pageCount}
-        forcePage={page}
-        initialPage={page}
-        onPageChange={({ selected }) => setPage(selected)}
-        marginPagesDisplayed={2}
-        pageRangeDisplayed={2}
+          // Данные
+          pageCount={pageCount}
+          forcePage={page}
+          initialPage={page}
+          onPageChange={({ selected }) => setPage(selected)}
+          marginPagesDisplayed={1}
+          pageRangeDisplayed={1}
 
-        // Стилизация
-        previousLabel={'previous'}
-        nextLabel={'next'}
-        breakLabel={'...'}
-        breakClassName={'break-me'}
-        containerClassName={'pagination'}
-        pageClassName={'page-item'}
-        pageLinkClassName={'page-link'}
-        previousClassName={'page-item'}
-        nextClassName={'page-item'}
-        previousLinkClassName={'page-link'}
-        nextLinkClassName={'page-link'}
-        breakClassName={'page-item'}
-        breakLinkClassName={'page-link'}
-        activeClassName={'active'}
+          // Стилизация
+          previousLabel={'previous'}
+          nextLabel={'next'}
+          breakLabel={'...'}
+          breakClassName={'break-me'}
+          containerClassName={'pagination'}
+          pageClassName={'page-item'}
+          pageLinkClassName={'page-link'}
+          previousClassName={'page-item'}
+          nextClassName={'page-item'}
+          previousLinkClassName={'page-link'}
+          nextLinkClassName={'page-link'}
+          breakClassName={'page-item'}
+          breakLinkClassName={'page-link'}
+          activeClassName={'active'}
         />
     </div>
   )

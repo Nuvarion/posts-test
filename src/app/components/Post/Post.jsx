@@ -8,7 +8,7 @@ const Post = ({ body, title, author, image, id }) => {
     return (
 
         <div className="row justify-content-center mb-3">
-            <div className="post col-7">
+            <div className="post col-11 col-md-9 col-lg-7">
                 
                 <Link to={`/post/${id}`} className="post_title">
                     <div className="mt-2 mb-3">{title}</div>
@@ -25,7 +25,6 @@ const Post = ({ body, title, author, image, id }) => {
                 <div className="post_author mb-2">
                     {author}
                 </div>
-
             </div>
         </div>
     )
