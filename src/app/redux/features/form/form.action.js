@@ -27,21 +27,21 @@ function fetchAddPost(userId, title, body) {
             dispatch(fetchAddPostError(err))
           }
        })
-    }
+    };
   }
 
 function fetchAddPostSuccess(data) {
   return {
     type: t.FETCH_ADD_POSTS_SUCCESS,
     payload: data
-  }
+  };
 }
 
 function fetchAddPostError(err) {
   return {
     type: t.FETCH_ADD_POSTS_ERROR,
     err: err
-  }
+  };
 }
 
 function fetchEditPost(body, title, id, userId) {

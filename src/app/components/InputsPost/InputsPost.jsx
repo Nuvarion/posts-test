@@ -4,9 +4,9 @@ import { bindActionCreators } from 'redux';
 
 import { changeInputs } from 'app_redux/features/form';
 
-import './InputsEditPost.scss';
+import './InputsPost.scss';
 
-const InputEditPost = ({ actions, id, title, body }) => {
+const InputsPost = ({ actions, id, title, body }) => {
     
     const changeHandler = (e) => {
         const { name, value } = e.target;
@@ -56,4 +56,4 @@ const mapDispatchToProps = (dispatch) => {
     };
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(InputEditPost);
+export default connect(mapStateToProps, mapDispatchToProps)(InputsPost);

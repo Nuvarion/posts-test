@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 import { fetchAddPost } from 'app_redux/features/form';
 import { fetchPosts } from 'app_redux/features/posts';
-import InputsEditPost from 'app_components/InputsEditPost';
+import InputsPost from 'app_components/InputsPost';
 
 import './AddPostPage.scss';
 
@@ -17,7 +17,6 @@ const AddPostPage = ({ actions, addPostId, title, body }) => {
     
     const onAddPost = () => {
         const userId = 11;
-        console.log(title,body)
         actions.fetchAddPost(userId, title, body);
     };
 
@@ -26,7 +25,7 @@ const AddPostPage = ({ actions, addPostId, title, body }) => {
         <div className="container">
             <div className="container-title mb-3">Enter data</div>
 
-            <InputsEditPost 
+            <InputsPost 
                 id={addPostId}
                 title={title || ''}
                 body={body || ''}

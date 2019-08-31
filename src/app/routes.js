@@ -1,5 +1,5 @@
 import MainContainer from "app_containers/MainContainer";
-import Base from 'app_components/Base';
+import HomePage from './pages/HomePage';
 import PostPage from './pages/PostPage/PostPage';
 import AddPostPage from './pages/AddPostPage/AddPostPage';
 import StartPageContainer from 'app_containers/StartPageContainer';
@@ -15,7 +15,7 @@ const routes = [
       },
       {
         path: '/posts',
-        component: Base
+        component: HomePage
       },
       {
         path: '/post/:id',

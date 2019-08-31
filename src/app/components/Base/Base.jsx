@@ -4,8 +4,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 import { fetchPosts } from 'app_redux/features/posts';
-import Search from 'app_components/Search';
-import Filter from 'app_components/Filter';
 import Post from 'app_components/Post';
 import Pagination from 'app_components/Pagination';
 import Spinner from 'app_components/Spinner'
@@ -47,8 +45,6 @@ const Base = ({ actions, loading, items, users, images, page }) => {
 
     return (
         <div className="base">
-            <Search />
-            <Filter />
 
             <Link to='/add/post' className="container-btn container d-flex justify-content-center mb-5">
                 <button 

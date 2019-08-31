@@ -6,7 +6,7 @@ import { fetchPosts, fetchCommentPage } from 'app_redux/features/posts';
 import { switchEditShow, fetchEditPost } from 'app_redux/features/form';
 import DeletePost from 'app_components/DeletePost';
 import Spinner from 'app_components/Spinner';
-import InputsEditPost from 'app_components/InputsEditPost'
+import InputsPost from 'app_components/InputsPost'
 
 import './PostPage.scss';
 
@@ -82,7 +82,7 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
                     </div>
 
                     <div className={showEditInputs ? "d-none" : null}>
-                        <InputsEditPost 
+                        <InputsPost 
                             id={id}
                             title={titleForm}
                             body={bodyForm}
@@ -90,6 +90,7 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
                     </div>
 
                     <div className="d-flex align-items-center justify-content-end">
+                        
                         <DeletePost postId={id} />
 
                         <button 

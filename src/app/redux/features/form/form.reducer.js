@@ -5,7 +5,7 @@ const initialState = {
     loading: false,
     err: false,
     addPost: {},
-    showEditInputs: false
+    showEditInputs: true
 };
 
 const form = (state = initialState, action) => {
@@ -18,7 +18,6 @@ const form = (state = initialState, action) => {
             const newPost = inputs[id] || {}; 
             newPost[name] = value; 
             inputs[id] = newPost;
-            // console.log(action.payload)
             return {
                 ...state,
                 inputs
