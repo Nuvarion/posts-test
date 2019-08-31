@@ -5,7 +5,6 @@ const initialState = {
     loading: false,
     err: null,
     addPost: {},
-    showEditInputs: true
 };
 
 const form = (state = initialState, action) => {
@@ -44,15 +43,6 @@ const form = (state = initialState, action) => {
                 err: action.payload
             }
         
-        case t.SWITCH_EDIT_SHOW:
-
-            const switchEditShow = !state.showEditInputs
-
-            return {
-                ...state,
-                showEditInputs: switchEditShow
-            }
-
         case t.FETCH_EDIT_POSTS_ERROR:
             return {
                 ...state,

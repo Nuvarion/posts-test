@@ -73,16 +73,9 @@ function fetchEditPostError(err) {
   }
 }
 
-function switchEditShow() {
-  return {
-    type: t.SWITCH_EDIT_SHOW
-  }
-}
-
 export {
     changeInputs,
     fetchAddPost,
     fetchEditPost,
-    switchEditShow,
     fetchEditPostError
 };

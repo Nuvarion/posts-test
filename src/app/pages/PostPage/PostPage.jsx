@@ -1,9 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import { fetchPosts, fetchCommentPage } from 'app_redux/features/posts';
-import { switchEditShow, fetchEditPost } from 'app_redux/features/form';
+import { fetchEditPost } from 'app_redux/features/form';
 import DeletePost from 'app_components/DeletePost';
 import Spinner from 'app_components/Spinner';
 import InputsPost from 'app_components/InputsPost'
@@ -16,6 +16,8 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
         actions.fetchPosts();
         actions.fetchCommentPage(id);
     }, []);
+
+    const [ showEditInputs, setShowEditInputs ] = useState(true);
 
     const getComments = (commentsPage) => {
         const commentsData = commentsPage.map((item) => {
@@ -37,12 +39,12 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
     }
 
     const onShowEditInputs = () => {
-        actions.switchEditShow();
+        setShowEditInputs(!showEditInputs);
     }
 
     const onEditPost = () => {
         actions.fetchEditPost(bodyForm, titleForm, id);
-        actions.switchEditShow();
+        setShowEditInputs(!showEditInputs)
     }
 
     const item = items.find(el => el.id == id) || {};
@@ -56,8 +58,6 @@ const PostPage = ({ actions, match: { params: { id } }, items, images, users, co
     const user = users && users.find(el => el.id === userId) || {};
 
     const { name, username, email, website } = user || {};
-
-    const { showEditInputs } = form;
 
     const { inputs } = form || {};
 
@@ -158,7 +158,6 @@ const mapDispatchToProps = (dispatch) => {
       actions: bindActionCreators({
         fetchPosts,
         fetchCommentPage,
-        switchEditShow,
         fetchEditPost
       }, dispatch)
     };
