@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+import { Link } from 'react-router-dom';
 
 import { changeFilter } from 'app_redux/features/filter';
 
@@ -15,7 +16,7 @@ const Filter = ({ actions, filter }) => {
     return(
         <div className="search">
             <nav className="navbar navbar-white bg-white">
-                <form className="form-inline">
+                <div className="form-inline">
                     <input 
                         name="filter"
                         className="form-control mr-sm-2" 
@@ -25,7 +26,7 @@ const Filter = ({ actions, filter }) => {
                         value={filter}
                         onChange={changeHandler}
                     />
-                </form>
+                </div>
             </nav>
         </div>
     )

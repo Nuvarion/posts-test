@@ -9,7 +9,7 @@ import './HomePage.scss';
 const HomePage = () => {
     return (
         <>
-            <div className="d-flex justify-content-center mb-5">
+            <div className="d-flex flex-column justify-content-center mb-5">
                 <Search />
                 <Filter />
             </div>
