@@ -7,7 +7,7 @@ const initialState = {
   commentsPage: [],
   page: 0,
   loading: false,
-  error: false
+  error: null
 }
 
 const posts = (state = initialState, action) => {
@@ -31,7 +31,7 @@ const posts = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: true
+        error: action.payload
       }
     
     case t.FETCH_USERS:
@@ -51,7 +51,7 @@ const posts = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: true
+        error: action.payload
       }
     
     case t.FETCH_IMAGES:
@@ -71,7 +71,7 @@ const posts = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: true
+        error: action.payload
       }
         
     case t.FETCH_COMMENTS:
@@ -91,7 +91,7 @@ const posts = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: true
+        error: action.payload
       }
 
     case t.SWITCH_PAGES:
@@ -116,7 +116,7 @@ const posts = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
-        error: true
+        error: action.payload
       }
 
     default:

@@ -3,7 +3,7 @@ import * as t from './constants';
 const initialState = {
     inputs: {},
     loading: false,
-    err: false,
+    err: null,
     addPost: {},
     showEditInputs: true
 };
@@ -18,6 +18,7 @@ const form = (state = initialState, action) => {
             const newPost = inputs[id] || {}; 
             newPost[name] = value; 
             inputs[id] = newPost;
+
             return {
                 ...state,
                 inputs
@@ -25,7 +26,6 @@ const form = (state = initialState, action) => {
 
         case t.FETCH_ADD_POSTS:
             return {
-
                 ...state,
                 loading: true
             }
@@ -41,7 +41,7 @@ const form = (state = initialState, action) => {
             return {
                 ...state,
                 loading: false,
-                err: true
+                err: action.payload
             }
         
         case t.SWITCH_EDIT_SHOW:
@@ -56,7 +56,7 @@ const form = (state = initialState, action) => {
         case t.FETCH_EDIT_POSTS_ERROR:
             return {
                 ...state,
-                err: true
+                err: action.payload
             }
 
         default: 

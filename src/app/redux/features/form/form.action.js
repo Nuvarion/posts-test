@@ -1,6 +1,7 @@
 import ApiService from 'app_services/ApiService';
 import * as t from './constants';
 import { fetchPosts } from 'app_redux/features/posts'
+import { bindActionCreators } from 'redux';
 
 function changeInputs(inp, id) {
 
@@ -20,11 +21,11 @@ function fetchAddPost(userId, title, body) {
             title: title,
             body: body,
             userId: userId
-      }).then((res) => {
+      }).then((res) => { 
         if (res.status === 201) {
           dispatch(fetchAddPostSuccess(res.data))
           } else {
-            dispatch(fetchAddPostError(err))
+            dispatch(fetchAddPostError(res.status))
           }
        })
     };
@@ -40,7 +41,7 @@ function fetchAddPostSuccess(data) {
 function fetchAddPostError(err) {
   return {
     type: t.FETCH_ADD_POSTS_ERROR,
-    err: err
+    payload: err
   };
 }
 
@@ -59,15 +60,16 @@ function fetchEditPost(body, title, id, userId) {
       if (res.status === 200) {
         dispatch(fetchPosts())
         } else {
-          dispatch(fetchEditPostError())
+          dispatch(fetchEditPostError(res.status))
         }
      })
   }
 }
 
-function fetchEditPostError() {
+function fetchEditPostError(err) {
   return {
     type: t.FETCH_EDIT_POSTS_ERROR,
+    payload: err
   }
 }
 

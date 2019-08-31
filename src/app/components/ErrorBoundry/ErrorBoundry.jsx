@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 import ErrorIndicator from '../ErrorIndicator';
 
-export default class ErrorBoundry extends Component {
+class ErrorBoundry extends Component {
 
     state = {
         hasErorr: false
@@ -15,10 +16,31 @@ export default class ErrorBoundry extends Component {
     }
 
     render() {
+
+        const { error, err } = this.props;
+
+        if (error || err !== null) {
+            return <ErrorIndicator error={error || err}/>
+        }
+
         if (this.state.hasError) {
             return <ErrorIndicator />
         }
 
         return this.props.children;
+    };
+};
+
+const mapStateToProps = ({ posts, form }) => {
+
+    const { error } = posts;
+
+    const { err } = form;
+
+    return {
+        error,
+        err
     }
 }
+
+export default connect(mapStateToProps)(ErrorBoundry);

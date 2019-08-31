@@ -3,6 +3,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    font-family: 'Montserrat';
   }
   
   .error-indicator img {
@@ -12,3 +13,12 @@
   .error-indicator .boom {
     font-size: 2rem;
   }
+
+.number-error {
+  font-size: 30px;
+  font-weight: 500;
+}
+
+.text-error {
+  font-size: 24px;
+}

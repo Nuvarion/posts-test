@@ -17,7 +17,7 @@ function fetchPosts() {
       if (res.status === 200) {
         dispatch(fetchPostsSuccess(res.data))
       } else {
-        dispatch(fetchPostsError(err))
+        dispatch(fetchPostsError(res.status))
       }
      })
   }
@@ -50,7 +50,7 @@ function fetchUsers() {
       if (res.status === 200) {
         dispatch(fetchUsersSuccess(res.data))
         } else {
-          dispatch(fetchUsersError(err))
+          dispatch(fetchUsersError(res.status))
         }
      })
   }
@@ -83,7 +83,7 @@ function fetchImages() {
       if (res.status === 200) {
         dispatch(fetchImagesSuccess(res.data))
         } else {
-          dispatch(fetchImagesError(err))
+          dispatch(fetchImagesError(res.status))
         }
      })
   }
@@ -114,7 +114,7 @@ function fetchCommentPage(postId) {
       if (res.status === 200) {
         dispatch(fetchCommentsSuccess(res.data))
         } else {
-          dispatch(fetchCommentsError(err))
+          dispatch(fetchCommentsError(res.status))
         }
      })
   }
@@ -147,7 +147,7 @@ function fetchDelete(postId) {
       if (res.status === 200) {
         dispatch(fetchDeleteSuccess())
         } else {
-          dispatch(fetchDeleteError())
+          dispatch(fetchDeleteError(res.status))
         }
      })
   }
