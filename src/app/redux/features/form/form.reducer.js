@@ -54,6 +54,12 @@ const form = (state = initialState, action) => {
                 showEditInputs: switchEditShow
             }
 
+        case t.FETCH_EDIT_POSTS_ERROR:
+            return {
+                ...state,
+                err: true
+            }
+
         default: 
             return state
     };

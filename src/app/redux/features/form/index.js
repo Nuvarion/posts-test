@@ -1,12 +1,16 @@
 import {
     changeInputs,
     fetchAddPost,
-    switchEditShow
+    switchEditShow,
+    fetchEditPost,
+    fetchEditPostError
 }
 from './form.action';
 
 export {
     changeInputs,
     fetchAddPost,
-    switchEditShow
+    switchEditShow,
+    fetchEditPost,
+    fetchEditPostError
 };

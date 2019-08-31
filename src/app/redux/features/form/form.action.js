@@ -1,5 +1,6 @@
 import ApiService from 'app_services/ApiService';
 import * as t from './constants';
+import { fetchPosts } from 'app_redux/features/posts'
 
 function changeInputs(inp, id) {
 
@@ -43,6 +44,33 @@ function fetchAddPostError(err) {
   }
 }
 
+function fetchEditPost(body, title, id, userId) {
+  return (dispatch) => {
+    dispatch({
+      type: t.FETCH_EDIT_POSTS
+    })
+
+    ApiService.put(`/posts/${id}`, {
+          id: id,
+          title: title,
+          body: body,
+          userId: userId
+    }).then((res) => {
+      if (res.status === 200) {
+        dispatch(fetchPosts())
+        } else {
+          dispatch(fetchEditPostError())
+        }
+     })
+  }
+}
+
+function fetchEditPostError() {
+  return {
+    type: t.FETCH_EDIT_POSTS_ERROR,
+  }
+}
+
 function switchEditShow() {
   return {
     type: t.SWITCH_EDIT_SHOW
@@ -52,5 +80,7 @@ function switchEditShow() {
 export {
     changeInputs,
     fetchAddPost,
-    switchEditShow
+    fetchEditPost,
+    switchEditShow,
+    fetchEditPostError
 };
