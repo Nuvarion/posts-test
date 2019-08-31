@@ -1,7 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { Link } from 'react-router-dom';
 
 import { changeSearch } from 'app_redux/features/filter';
 
